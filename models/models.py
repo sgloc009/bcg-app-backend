@@ -29,6 +29,18 @@ class Insurance(Base):
         self.collision = collision
         self.comprehensive = comprehensive
     
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "premium": self.premium,
+            "dop": self.dop,
+            "bil": self.bil,
+            "pip": self.pip,
+            "pdl": self.pdl,
+            "collision": self.collision,
+            "comprehensive": self.comprehensive
+        }
+    
     def __repr__(self):
         return '<Insurance %r %r %r %r %r %r %r>' % (self.premium, self.dop, self.bil, self.pip, self.pdl, self.collision, self.comprehensive)
 
@@ -46,6 +58,14 @@ class Vehicle(Base):
         self.fuel = fuel
         self.segment = segment
         self.insurance = insurance
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "fuel": self.fuel,
+            "segment": self.segment,
+            "insurance": self.insurance.to_dict()
+        }
 
     def __repr__(self):
         return '<Vehicle %r %r %r>' % (self.fuel, self.segment, self.insurance)
@@ -67,6 +87,17 @@ class Customer(Base):
         self. vehicle = vehicle
         self.region = region
         self.marital_status = marital_status
+    
+    def to_dict(self):
+        self.vehicle
+        return {
+            "id": self.id,
+            "gender": self.gender,
+            "income_group": self.income_group,
+            "vehicle": list(map(lambda x: x.to_dict(), self.vehicle)),
+            "region": self.region,
+            "marital_status": self.marital_status
+        }
     
     def __repr__(self):
         return '<Customer %r %r %r %r %r %r>' %(self.id, self.gender, self.income_group, self.region, self.marital_status, self.vehicle)
