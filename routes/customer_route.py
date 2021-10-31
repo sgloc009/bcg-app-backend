@@ -62,13 +62,13 @@ class Customer(Resource):
         customer_id = request.args.get("customer_id")
         insurance_id = request.args.get("insurance_id")
         print(customer_id, insurance_id)
-        response = Response(status=200,headers={"Content-Type": "application/json"})
+        res = []
+        response = Response(json.dumps({"items": res}), status=200,headers={"Content-Type": "application/json"})
         with Session(engine) as s:
-            res = []
             try:
                 for i in s.query(Customer_Model).join(Customer_Model.vehicle).join(Vehicle_Model.insurance).filter(or_(Customer_Model.id == customer_id , Insurance_Model.id == insurance_id)):
                     res.append(i.to_dict())
-                    response.response = json.dumps({"items": res})
+                response.data = json.dumps({"items": res})
                 return response
             except Exception:
                 response.data = "error"

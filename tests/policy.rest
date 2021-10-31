@@ -1,0 +1,22 @@
+POST http://localhost:5000/api/v1/policy/
+content-type: text/plain
+
+sdaasdsad
+# {
+#     "id": 2323,
+#     "dop": "10/12/2020",
+#     "premium": false,
+#     "bil": false,
+#     "pip": false,
+#     "pdl": false,
+#     "collision": false,
+#     "comprehensive": false
+# }
+
+
+###
+
+GET http://localhost:5000/api/v1/customer?customer_id=420
+
+###
+GET http://localhost:5000/api/v1/customer/stats?type=month

@@ -1,6 +1,3 @@
-logs/*
-db/*
-*.rest
 */__pycache__
 __pycache__
 .vscode
