@@ -49,7 +49,7 @@ class Insurance(Base):
 
 class Vehicle(Base):
     __tablename__ = "vehicle"
-    __table_args__ = (CheckConstraint('fuel IN ("CNG","Petrol","Diesel")'))
+    __table_args__ = (CheckConstraint('fuel IN ("CNG","Petrol","Diesel")'),)
     id = Column(Integer, primary_key=True)
     insurance_id = Column(Integer, ForeignKey("insurance.id"))
     fuel = Column(VARCHAR(10))
