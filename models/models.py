@@ -1,9 +1,10 @@
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, Integer, String, ForeignKey, Date, Boolean, VARCHAR, MetaData, create_engine
 from sqlalchemy.sql import func
+import os
 from sqlalchemy.sql.schema import CheckConstraint
 
-engine = create_engine('sqlite:///D:\\Project folder\\client-insurance-app-backend\\db\\insurance.db', echo=True)
+engine = create_engine(os.environ.get("DB_STRING"), echo=True)
 Base = declarative_base()
 meta = MetaData(engine)
 
