@@ -19,4 +19,5 @@ class Status(Resource):
         return "server is up"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(os.environ.get("HOST"), int(os.environ.get("PORT")),\
+         debug=not eval(os.environ["PROD"]))
