@@ -3,7 +3,9 @@ from flask_restx import Resource, Api, apidoc
 from routes.customer_route import customer_api
 from utilities import insert_data
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(os.environ.get("APP_NAME"))
 insert_data.insert_data()
 api = Api(app, title="bcg app server", doc="/swag")
