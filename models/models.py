@@ -1,9 +1,11 @@
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, Integer, String, ForeignKey, Date, Boolean, VARCHAR, MetaData, create_engine
 from sqlalchemy.sql import func
+from dotenv import load_dotenv
 import os
 from sqlalchemy.sql.schema import CheckConstraint
 
+load_dotenv()
 engine = create_engine(os.environ.get("DB_STRING"), echo=True)
 Base = declarative_base()
 meta = MetaData(engine)
@@ -47,7 +49,7 @@ class Insurance(Base):
 
 class Vehicle(Base):
     __tablename__ = "vehicle"
-    # __table_args__ = (CheckConstraint('fuel LIKE ("CNG","Petrol","Diesel")'))
+    __table_args__ = (CheckConstraint('fuel IN ("CNG","Petrol","Diesel")'))
     id = Column(Integer, primary_key=True)
     insurance_id = Column(Integer, ForeignKey("insurance.id"))
     fuel = Column(VARCHAR(10))
