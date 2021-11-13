@@ -66,7 +66,7 @@ class Customer(Resource):
         response = Response(json.dumps({"items": res}), status=200,headers={"Content-Type": "application/json"})
         with Session(engine) as s:
             try:
-                for i in s.query(Customer_Model).join(Customer_Model.vehicle).join(Vehicle_Model.insurance).filter(or_(Customer_Model.id == customer_id , Insurance_Model.id == insurance_id)):
+                for i in s.query(Customer_Model).join(Customer_Model.vehicle).join(Vehicle_Model.insurance).filter(Customer_Model.id == customer_id if customer_id else Insurance_Model.id == insurance_id):
                     res.append(i.to_dict())
                 response.data = json.dumps({"items": res})
                 return response

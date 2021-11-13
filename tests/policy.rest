@@ -16,7 +16,10 @@ sdaasdsad
 
 ###
 
-GET http://localhost:5000/api/v1/customer?customer_id=420
+GET http://localhost:5000/api/v1/customer?customer_id=400
+
+###
+GET http://localhost:5000/api/v1/customer?insurance_id=12366
 
 ###
 GET http://localhost:5000/api/v1/customer/stats?type=month
